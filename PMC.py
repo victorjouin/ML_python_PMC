@@ -17,8 +17,8 @@ class myPMC:
                     }
                 else:   
                     neuron = {
-                        'weights': [random.random() for _ in range(self.TabNumNeuronPerLayer[i-1])],
-                        'bias': random.random(),
+                        'weights': [random.uniform(-1, 1) for _ in range(self.TabNumNeuronPerLayer[i-1])],
+                        'bias': random.uniform(-1, 1),
                         'z': 0,
                         'a': 0
                     }
@@ -87,13 +87,13 @@ class myPMC:
                     print("-" * 50)
     
 
-myPMC = myPMC(numLayers=3, TabNumNeuronPerLayer=[2, 2, 2])
+myPMC = myPMC(numLayers=3, TabNumNeuronPerLayer=[2, 3, 2])
 myPMC.initialize_network()
 myPMC.display_network()
 
 input_data = [[0, 0], [0, 1], [1, 0], [1, 1]]
-target_output = [[0, 0], [1, 0], [1, 0], [0, 1]]
-learning_rate = 0.005
+target_output = [[0, 1], [1, 0], [1, 0], [0, 1]]
+learning_rate = 0.1
 
-myPMC.train(input_data, target_output, learning_rate, epochs=1000)
+myPMC.train(input_data, target_output, learning_rate, epochs=10000)
 myPMC.display_network()
